@@ -42,17 +42,56 @@ class BoustrophedonStructure:
     def interface(self) :
         # Etape 0
         tk.Label(root, text="Étape 1 , définition de la liste des étudiants.",
-                       font=("Arial", 11, "bold")).pack(pady=10)        
-        self.btn0 = tk.Button(root, text="Pour Examen : Charger data Apogée et Moodle ",
-                              command=self.run_etape0).pack(pady=5)
+                       font=("Arial", 11, "bold")).pack(pady=10)
         
-        self.btn0partiel = tk.Button(root, text="Pour un partiel : Charger data  Moodle ",
-                              command=self.run_etape0partiel).pack(pady=5)
+
+        # Créer un cadre horizontal pour les boutons radio
+        frame_radio = tk.Frame(self.root)
+        frame_radio.pack(pady=10)
+        
+        
+        tk.Label(frame_radio, text="Cocher une case puis ""Valider"" ",
+                       font=("Arial", 11)).pack(side="left", padx=10)
+        self.choix = tk.StringVar(value="nil")  # par défaut
+        #tk.Radiobutton(frame_radio, text="Examen", variable=self.choix, value="Examen").pack(side="left", padx=10)
+        #tk.Radiobutton(frame_radio, text="Partiel", variable=self.choix, value="Partiel").pack(side="left", padx=10)
+        tk.Radiobutton(frame_radio, text="Examen", variable=self.choix, value="Examen").pack(side="left", padx=10)
+        tk.Radiobutton(frame_radio, text="Partiel", variable=self.choix,  value="Partiel").pack(side="left", padx=10)
+
+        # Bouton Valide
+        def valider():
+            print(self.choix.get())
+            if self.choix.get() == "Examen":
+                self.btn0.config(state=tk.NORMAL)
+                self.btn0partiel.config(state=tk.DISABLED)
+            elif self.choix.get() == "Partiel":
+                self.btn0partiel.config(state=tk.NORMAL)
+                self.btn0.config(state=tk.DISABLED)
+                
+
+        tk.Button(self.root, text="Valider", command=valider).pack(pady=10)
+        # Boutons désactivés au départ
+        self.btn0 = tk.Button(self.root,
+                              text="Pour un Examen : Charger data Apogée et Moodle",
+                              command=self.run_etape0,
+                              state=tk.DISABLED)
+        self.btn0.pack(pady=5)
+
+        self.btn0partiel = tk.Button(self.root,
+                                     text="Pour un partiel : Charger data Moodle",
+                                     command=self.run_etape0partiel,
+                                     state=tk.DISABLED)
+        self.btn0partiel.pack(pady=5)
+
+        
+    
         # Etape 1
         tk.Label(root, text="Étape 2 , Choisir un fichier étudiant.",
-                       font=("Arial", 11, "bold")).pack(pady=10)          
+                       font=("Arial", 11, "bold")).pack(pady=10)
+        
         self.btn1 = tk.Button(root, text="1. Charger le fichier étudiant ",
-                              command=self.run_etape1).pack(pady=5)
+                              command=self.run_etape1, state = tk.NORMAL )
+        self.btn1.pack(pady=5)
         
          # 
         # Etape 2
