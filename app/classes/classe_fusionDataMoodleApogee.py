@@ -132,9 +132,9 @@ class fusionDataMoodleApogee :
         nbEtudiantApogee = len(self.dataEtudiantApogee)
         nbEtudiantMoodle = len(self.dataEtudiantMoodle)
         
-        if nbEtudiantMoodle <= nbEtudiantApogee :
+        if nbEtudiantMoodle < nbEtudiantApogee :
             afficheConsigne("Attention", f"Il y a {nbEtudiantApogee} candidats pour {nbEtudiantMoodle}.\n\n"
-                                        f"Le fichier exportés depuis Moodle est peut être incomplet.\n"
+                                        f"Le fichier exportés depuis Moodle est peut être incomplet (à vérifier).\n"
                                         f"En continuant vous ne pourrez pas effectuer tous les envois de courriel.\n")
         
         # définition du dictionnaire  clé = champ de l'entete et valeur = indice de la colonne dans le tableau.

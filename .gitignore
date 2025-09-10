@@ -4,7 +4,10 @@
 *.ps
 *.aux
 *.log
+\#*#
 
+# les répertoire contenant les data générées
+Amphi_*/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
